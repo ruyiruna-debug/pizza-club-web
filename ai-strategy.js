@@ -1,8 +1,9 @@
 (function () {
   var PRICE_API = 'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT';
   var STATS_API = 'https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT';
-  var SL_PERCENT = 1.2;
-  var TP_PERCENT = 2.0;
+  var SL_PERCENT = 1.0;
+  var TP_PERCENT = 3.0;
+  /* 盈亏比 = TP_PERCENT / SL_PERCENT = 3:1 */
   var lastStrategy = null;
 
   function getLang() {
