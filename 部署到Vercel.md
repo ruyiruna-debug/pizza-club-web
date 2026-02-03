@@ -46,8 +46,8 @@
 
 1. 打开：**https://vercel.com/new**
 2. 选 **Import Git Repository**，找到 **pizza-club-web**，点右边的 **Import**。
-3. 不用改任何设置，直接点 **Deploy**。
-4. 等一两分钟，会给你一个地址，就是你的网站。
+3. **构建设置**（一般不用改）：构建命令为 `npm run pack`，输出目录为 `release`。Vercel 会自动执行 `pack`（主站 + wallet-widget + dex），部署后根路径是主站，**/dex/** 是 Orderly 交易应用。
+4. 点 **Deploy**，等一两分钟，会给你一个地址，就是你的网站。访问「你的域名/dex/」可打开交易页。
 
 ---
 
@@ -57,7 +57,9 @@
 - `git commit -m "update"`
 - `git push`
 
-Vercel 会自动重新部署。
+Vercel 会自动执行 `npm run pack` 并部署 `release/`，无需本地先打包再上传。
+
+**用命令行部署（可选）**：在项目根目录执行 `npm run pack` 完成打包后，执行 `npx vercel --prod`。若出现「linked project does not have id」，可删除项目里的 `.vercel` 文件夹后重试，或直接使用上面的「推送到 GitHub」方式，由 Vercel 自动构建部署。
 
 ---
 

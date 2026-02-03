@@ -1,0 +1,35 @@
+---
+description: 在「网页」仓库中运行 npm 的目录与脚本说明
+globs: package.json,dex/**/*
+alwaysApply: false
+---
+
+# 本仓库 npm 与 dex 子项目
+
+## 目录结构
+
+- **根目录「网页」**：静态站（index.html、style.css、lang.js 等），`package.json` 仅有 `build:wallet`、`pack`、`deploy`，**没有** `dev`。
+- **子目录 `dex/`**：Vite + React 的 Orderly DEX 应用，`package.json` 有 `dev`、`build`、`preview`。
+
+## 运行命令时
+
+- 要启动 **dex 开发服务器**：必须先进入 `dex` 再执行命令：
+  ```powershell
+  cd dex
+  npm install
+  npm run dev
+  ```
+- 在 **dex** 里修改过 `package.json` 或新增依赖后，必须在 **dex** 目录执行 `npm install`，根目录的 `npm install` 不会安装 dex 的依赖。
+- PowerShell 中多条命令用 **分号** 连接，不要用 `&&`（会报错）：
+  ```powershell
+  cd dex; npm install; npm run dev
+  ```
+  若当前已在「网页」根目录且要进 dex，写 `cd dex` 即可，不要写 `cd dex; cd dex`。
+
+## 常用命令速查
+
+| 目的           | 所在目录 | 命令              |
+|----------------|----------|-------------------|
+| 打包静态站     | 网页     | `npm run pack`    |
+| dex 开发/构建  | dex      | `npm run dev` / `npm run build` |
+| 安装 dex 依赖  | dex      | `npm install`     |
