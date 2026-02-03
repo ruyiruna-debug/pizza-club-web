@@ -10,7 +10,11 @@ const releaseDir = path.join(root, 'release');
 const files = [
   'index.html',
   'style.css',
+  'lang.js',
+  'web3-wallet.js',
   'fear-greed.js',
+  'smart-money.js',
+  'ai-strategy.js',
   'news.js',
 ];
 

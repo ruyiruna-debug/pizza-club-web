@@ -1,26 +1,39 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>我的网页</title>
+  <title>Pizza Club</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
   <header class="header">
     <nav class="nav">
       <a href="#" class="logo">Pizza Club</a>
       <ul class="nav-links">
-        <li><a href="#home">首页</a></li>
-        <li><a href="#chart">行情</a></li>
-        <li><a href="#fear-greed">恐惧贪婪</a></li>
-        <li><a href="#news">新闻</a></li>
-        <li><a href="#about">关于</a></li>
-        <li><a href="#contact">联系</a></li>
+        <li><a href="#home" data-i18n="nav_home">Home</a></li>
+        <li><a href="#chart" data-i18n="nav_chart">Chart</a></li>
+        <li><a href="#fear-greed" data-i18n="nav_fear_greed">Fear & Greed</a></li>
+        <li><a href="#ai-strategy" data-i18n="nav_ai_strategy">AI Strategy</a></li>
+        <li><a href="#news" data-i18n="nav_news">News</a></li>
+        <li><a href="#about" data-i18n="nav_about">About</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
       </ul>
+      <div class="header-actions">
+        <div class="wallet-wrap">
+          <button type="button" class="wallet-btn" id="wallet-btn" data-i18n="wallet_connect">Connect Wallet</button>
+          <span class="wallet-address" id="wallet-address" aria-live="polite" hidden></span>
+          <button type="button" class="wallet-disconnect" id="wallet-disconnect" data-i18n="wallet_disconnect" hidden>Disconnect</button>
+        </div>
+        <div class="lang-switch">
+          <button type="button" class="lang-btn active" data-lang="en" aria-label="English">EN</button>
+          <span class="lang-sep">/</span>
+          <button type="button" class="lang-btn" data-lang="zh" aria-label="中文">中文</button>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -74,8 +87,8 @@
 
     <section id="chart" class="chart-section">
       <div class="section-header">
-        <span class="section-label">实时行情</span>
-        <h2>行情图表</h2>
+        <span class="section-label" data-i18n="chart_label">Live Chart</span>
+        <h2 data-i18n="chart_title">Chart</h2>
       </div>
       <div class="tradingview-widget-wrapper">
         <!-- TradingView Widget BEGIN -->
@@ -115,33 +128,79 @@
 
     <section id="fear-greed" class="fear-greed-section">
       <div class="section-header">
-        <span class="section-label">市场情绪</span>
-        <h2>恐惧与贪婪指数</h2>
+        <span class="section-label" data-i18n="fear_greed_label">Market Sentiment</span>
+        <h2 data-i18n="fear_greed_title">Fear & Greed Index</h2>
       </div>
-      <div class="fear-greed-container">
-        <div class="fear-greed-card">
+      <div class="fear-greed-row">
+        <div class="fear-greed-card fear-greed-card--compact">
           <div class="fear-greed-value-wrap">
             <span class="fear-greed-value" id="fear-greed-value">--</span>
             <span class="fear-greed-unit">/ 100</span>
           </div>
-          <p class="fear-greed-label" id="fear-greed-label">加载中…</p>
-          <div class="fear-greed-bar-wrap">
-            <div class="fear-greed-bar" id="fear-greed-bar"></div>
+          <p class="fear-greed-label" id="fear-greed-label">Loading…</p>
+          <div class="fear-greed-pixels-wrap">
+            <div class="fear-greed-pixels" id="fear-greed-pixels" aria-hidden="true"></div>
           </div>
-          <p class="fear-greed-hint">数据来源：<a href="https://alternative.me/crypto/fear-and-greed-index/" target="_blank" rel="noopener noreferrer" class="fear-greed-link">Alternative.me</a></p>
+          <p class="fear-greed-hint" data-i18n-html="fear_greed_hint">Data: <a href="https://alternative.me/crypto/fear-and-greed-index/" target="_blank" rel="noopener noreferrer" class="fear-greed-link">Alternative.me</a></p>
+        </div>
+        <div class="smart-money-card">
+          <h3 class="smart-money-title" data-i18n="smart_money_title">Smart Money</h3>
+          <div class="smart-money-feed" id="smart-money-feed">
+            <p class="smart-money-loading" id="smart-money-loading" data-i18n="smart_money_loading">Loading…</p>
+          </div>
+          <p class="smart-money-hint" data-i18n="smart_money_hint">Whale & exchange flow signals</p>
         </div>
       </div>
     </section>
 
+    <section id="ai-strategy" class="ai-strategy-section">
+      <div class="section-header">
+        <span class="section-label" data-i18n="ai_label">AI</span>
+        <h2 data-i18n="ai_title">BTC 4H Strategy</h2>
+      </div>
+      <div class="ai-strategy-card card">
+        <div class="ai-strategy-intro">
+          <p class="ai-strategy-desc" data-i18n="ai_desc">Get a suggested contract strategy for the current 4-hour cycle (direction, entry, stop-loss, take-profit).</p>
+        </div>
+        <div class="ai-strategy-action">
+          <button type="button" class="btn btn-primary ai-strategy-btn" id="ai-strategy-btn" data-i18n="ai_btn_seek">Seek Strategy</button>
+        </div>
+        <div class="ai-strategy-result" id="ai-strategy-result" aria-live="polite" hidden>
+          <div class="ai-strategy-meta">
+            <span class="ai-strategy-period" id="ai-strategy-period" data-i18n="ai_period">4H cycle</span>
+            <span class="ai-strategy-time" id="ai-strategy-time"></span>
+          </div>
+          <div class="ai-strategy-result-row">
+            <dl class="ai-strategy-dl">
+              <dt data-i18n="ai_direction">Direction</dt>
+              <dd id="ai-strategy-direction"></dd>
+              <dt data-i18n="ai_entry">Entry</dt>
+              <dd id="ai-strategy-entry"></dd>
+              <dt data-i18n="ai_stop_loss">Stop-loss</dt>
+              <dd id="ai-strategy-sl"></dd>
+              <dt data-i18n="ai_take_profit">Take-profit</dt>
+              <dd id="ai-strategy-tp"></dd>
+            </dl>
+            <div class="ai-strategy-reason-wrap">
+              <span class="ai-strategy-reason-label" data-i18n="ai_reason_label">AI reason</span>
+              <p class="ai-strategy-reason" id="ai-strategy-reason"></p>
+            </div>
+          </div>
+        </div>
+        <p class="ai-strategy-loading" id="ai-strategy-loading" hidden data-i18n="ai_loading">Loading…</p>
+        <p class="ai-strategy-error" id="ai-strategy-error" hidden data-i18n="ai_error">Failed to load. Try again.</p>
+      </div>
+      <p class="ai-disclaimer" data-i18n="ai_disclaimer">This is a beta feature and is not investment advice. The module is experimental and may be inaccurate. Use at your own risk.</p>
+    </section>
+
     <section id="news" class="news-section">
       <div class="section-header">
-        <span class="section-label">快讯</span>
-        <h2>加密货币新闻</h2>
+        <span class="section-label" data-i18n="news_label">News</span>
+        <h2 data-i18n="news_title">Crypto News</h2>
       </div>
       <div class="news-modules">
-        <!-- 中文信息源 -->
         <div class="news-module">
-          <h3 class="news-module-title">中文信息源</h3>
+          <h3 class="news-module-title" data-i18n="news_zh_sources">Chinese Sources</h3>
           <div class="news-container">
             <div class="news-ticker-wrap">
               <div class="news-ticker">
@@ -170,9 +229,8 @@
             </div>
           </div>
         </div>
-        <!-- 英文信息源 -->
         <div class="news-module">
-          <h3 class="news-module-title">英文信息源</h3>
+          <h3 class="news-module-title" data-i18n="news_en_sources">English Sources</h3>
           <div class="news-container">
             <div class="news-ticker-wrap">
               <div class="news-ticker">
@@ -202,35 +260,45 @@
           </div>
         </div>
       </div>
-      <p class="news-refresh-hint" id="news-refresh-hint">每 5 分钟自动更新 · 数据来源 RSS</p>
+      <p class="news-refresh-hint" id="news-refresh-hint" data-i18n="news_refresh_hint">Auto-refresh every 5 min · RSS</p>
     </section>
 
     <section id="about" class="about">
       <div class="section-header">
-        <span class="section-label">关于我们</span>
-        <h2>关于</h2>
+        <span class="section-label" data-i18n="about_label">About Us</span>
+        <h2 data-i18n="about_title">About</h2>
       </div>
       <div class="card about-card">
-        <p>Pizza Club 是一个非营利性的 Web3 社区，目的是为了让更多人了解区块链以及相关知识。</p>
+        <p data-i18n="about_text">Pizza Club is a non-profit Web3 community dedicated to helping more people learn about blockchain and related knowledge.</p>
       </div>
     </section>
 
     <section id="contact" class="contact">
       <div class="section-header">
-        <span class="section-label">联系方式</span>
-        <h2>联系</h2>
+        <span class="section-label" data-i18n="contact_label">Contact</span>
+        <h2 data-i18n="contact_title">Contact</h2>
       </div>
       <div class="card contact-card">
-        <p>Telegram：<a href="https://t.me/PPPIZA" target="_blank" rel="noopener noreferrer" class="contact-link">@PPPIZA</a></p>
+        <p data-i18n-link>Telegram: <a href="https://t.me/PPPIZA" target="_blank" rel="noopener noreferrer" class="contact-link">@PPPIZA</a></p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>© 2025 我的网页 · 保留所有权利</p>
+    <p data-i18n="footer_text">© 2025 Pizza Club. All rights reserved.</p>
   </footer>
 
+  <a href="https://x.com/xincctnnq" target="_blank" rel="noopener noreferrer" class="twitter-float" title="Twitter / X" aria-label="打开 Twitter">
+    <svg class="twitter-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </svg>
+  </a>
+
+  <script src="lang.js"></script>
+  <script src="web3-wallet.js"></script>
   <script src="fear-greed.js"></script>
+  <script src="smart-money.js"></script>
+  <script src="ai-strategy.js"></script>
   <script src="news.js"></script>
 </body>
 </html>
