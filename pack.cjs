@@ -1,17 +1,20 @@
 /**
  * 打包网站：只复制部署需要的文件到 release 目录，便于上传到服务器。
+ * 含主站 + RainbowKit 钱包组件（wallet-widget）。
  */
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const root = __dirname;
 const releaseDir = path.join(root, 'release');
+const walletDistDir = path.join(root, 'wallet-widget', 'dist');
+const releaseWalletDir = path.join(releaseDir, 'wallet-widget', 'dist');
 
 const files = [
   'index.html',
   'style.css',
   'lang.js',
-  'web3-wallet.js',
   'fear-greed.js',
   'smart-money.js',
   'ai-strategy.js',
@@ -45,6 +48,25 @@ for (const f of files) {
   }
   const dest = path.join(releaseDir, f);
   copyFile(src, dest);
+}
+
+// 构建并复制 RainbowKit 钱包组件
+console.log('\n构建 wallet-widget（RainbowKit）…');
+try {
+  execSync('npm run build:wallet', { cwd: root, stdio: 'inherit' });
+} catch (e) {
+  console.warn('wallet-widget 构建失败，请先执行: npm run build:wallet');
+}
+if (fs.existsSync(walletDistDir)) {
+  ensureDir(releaseWalletDir);
+  const walletFiles = fs.readdirSync(walletDistDir);
+  for (const f of walletFiles) {
+    const src = path.join(walletDistDir, f);
+    const dest = path.join(releaseWalletDir, f);
+    if (fs.statSync(src).isFile()) copyFile(src, dest);
+  }
+} else {
+  console.warn('未找到 wallet-widget/dist/，部署后钱包区域可能空白，请先执行: npm run build:wallet');
 }
 
 console.log('\n完成。请将 release 文件夹内的全部内容上传到服务器。');

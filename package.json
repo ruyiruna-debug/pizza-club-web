@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "build:wallet": "cd wallet-widget && npm install && npm run build",
     "pack": "node pack.cjs",
     "deploy": "node deploy.cjs"
   },

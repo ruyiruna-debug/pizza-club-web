@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="wallet-widget/dist/wallet-bundle.css">
 </head>
 <body>
   <header class="header">
@@ -23,11 +24,7 @@
         <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
       </ul>
       <div class="header-actions">
-        <div class="wallet-wrap" id="wallet-wrap">
-          <button type="button" class="wallet-btn" id="wallet-btn" data-i18n="wallet_connect">Connect Wallet</button>
-          <span class="wallet-address" id="wallet-address" hidden aria-live="polite"></span>
-          <button type="button" class="wallet-disconnect" id="wallet-disconnect" hidden data-i18n="wallet_disconnect">Disconnect</button>
-        </div>
+        <div class="wallet-wrap" id="wallet-root"></div>
         <div class="lang-switch">
           <button type="button" class="lang-btn active" data-lang="en" aria-label="English">EN</button>
           <span class="lang-sep">/</span>
@@ -299,7 +296,7 @@
   </a>
 
   <script src="lang.js"></script>
-  <script src="web3-wallet.js"></script>
+  <script src="wallet-widget/dist/wallet-bundle.js"></script>
   <script src="fear-greed.js"></script>
   <script src="smart-money.js"></script>
   <script src="ai-strategy.js"></script>

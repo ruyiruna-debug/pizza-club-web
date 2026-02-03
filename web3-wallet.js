@@ -11,14 +11,22 @@
     }
   }
 
-  /** 获取注入的 Web3 钱包（兼容 MetaMask、Rabby、Coinbase Wallet、Trust Wallet 等绝大多数浏览器插件钱包） */
+  /** 获取注入的 Web3 钱包（兼容 MetaMask、Rabby、Coinbase、OKX、Trust 等浏览器插件钱包） */
   function getProvider() {
-    var ethereum = typeof window !== 'undefined' && window.ethereum;
-    if (!ethereum) return null;
-    if (Array.isArray(ethereum.providers)) {
-      return ethereum.providers.find(function (p) { return p.isMetaMask || p.isRabby || p.isCoinbaseWallet; }) || ethereum.providers[0];
+    if (typeof window === 'undefined') return null;
+    var ethereum = window.ethereum;
+    if (ethereum) {
+      if (Array.isArray(ethereum.providers)) {
+        var preferred = ethereum.providers.find(function (p) { return p.isMetaMask || p.isRabby || p.isCoinbaseWallet || p.isOKExWallet; });
+        if (preferred) return preferred;
+        return ethereum.providers[0];
+      }
+      return ethereum;
     }
-    return ethereum;
+    if (window.okxwallet && typeof window.okxwallet.request === 'function') {
+      return window.okxwallet;
+    }
+    return null;
   }
 
   function getBtn() {
@@ -173,17 +181,27 @@
       });
   }
 
+  function refreshWalletButton() {
+    var provider = getProvider();
+    var btn = getBtn();
+    if (!btn || btn.hidden) return;
+    setButtonText(provider ? 'wallet_connect' : 'wallet_no_provider');
+    btn.disabled = !provider;
+  }
+
   function init() {
     tryReconnect();
     var btn = getBtn();
     var discBtn = getDisconnectBtn();
     if (btn) btn.addEventListener('click', connect);
     if (discBtn) discBtn.addEventListener('click', disconnect);
+    setTimeout(refreshWalletButton, 800);
+    setTimeout(refreshWalletButton, 2000);
     window.addEventListener('pizza-club-lang-change', function (e) {
       var lang = e.detail && e.detail.lang ? e.detail.lang : getLang();
       var addrEl = getAddressEl();
       if (addrEl && !addrEl.hidden) return;
-      setButtonText(getProvider() ? 'wallet_connect' : 'wallet_no_provider');
+      refreshWalletButton();
       setDisconnectText();
     });
   }
