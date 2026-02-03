@@ -1,13 +1,13 @@
 import '@rainbow-me/rainbowkit/styles.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
-import { arbitrum, base, bsc, optimism, polygon } from 'wagmi/chains';
+import { mainnet, arbitrum, base, bsc, optimism, polygon } from 'wagmi/chains';
 import { RainbowKitProvider, getDefaultConfig, ConnectButton } from '@rainbow-me/rainbowkit';
 
 const config = getDefaultConfig({
   appName: 'Pizza Club',
   projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID || 'YOUR_PROJECT_ID',
-  chains: [arbitrum, optimism, base, polygon, bsc],
+  chains: [mainnet, arbitrum, optimism, base, polygon, bsc],
 });
 
 const queryClient = new QueryClient();
