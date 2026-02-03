@@ -1,0 +1,17 @@
+{
+  "name": "pizza-club-web",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build:wallet": "vite build",
+    "pack": "node pack.cjs",
+    "deploy": "node deploy.cjs"
+  },
+  "dependencies": {
+    "@okxconnect/universal-provider": "^1.0.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

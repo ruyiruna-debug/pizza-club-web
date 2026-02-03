@@ -1,0 +1,7 @@
+{
+  "host": "你的阿里云服务器公网IP或域名",
+  "user": "登录用户名，如 root 或 ubuntu",
+  "port": 22,
+  "targetPath": "/var/www/html",
+  "privateKey": "可选，如使用密钥登录请填私钥文件相对路径，如 key.pem"
+}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的网页</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <a href="#" class="logo">Pizza Club</a>
+      <ul class="nav-links">
+        <li><a href="#home">首页</a></li>
+        <li><a href="#chart">行情</a></li>
+        <li><a href="#fear-greed">恐惧贪婪</a></li>
+        <li><a href="#news">新闻</a></li>
+        <li><a href="#about">关于</a></li>
+        <li><a href="#contact">联系</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-stars" aria-hidden="true">
+        <span class="star" style="--x:8%;--y:14%;--d:0s"></span>
+        <span class="star" style="--x:92%;--y:18%;--d:1.2s"></span>
+        <span class="star" style="--x:15%;--y:72%;--d:0.4s"></span>
+        <span class="star" style="--x:85%;--y:68%;--d:2s"></span>
+        <span class="star" style="--x:48%;--y:22%;--d:0.8s"></span>
+        <span class="star" style="--x:72%;--y:45%;--d:1.6s"></span>
+        <span class="star" style="--x:22%;--y:38%;--d:0.2s"></span>
+        <span class="star" style="--x:78%;--y:82%;--d:1.4s"></span>
+        <span class="star" style="--x:35%;--y:55%;--d:0.6s"></span>
+        <span class="star" style="--x:58%;--y:78%;--d:2.2s"></span>
+        <span class="star" style="--x:5%;--y:48%;--d:1s"></span>
+        <span class="star" style="--x:95%;--y:52%;--d:0.3s"></span>
+        <span class="star" style="--x:42%;--y:12%;--d:1.8s"></span>
+        <span class="star" style="--x:65%;--y:32%;--d:0.5s"></span>
+        <span class="star" style="--x:28%;--y:88%;--d:1.1s"></span>
+        <span class="star" style="--x:88%;--y:8%;--d:0.7s"></span>
+        <span class="star" style="--x:12%;--y:62%;--d:2.4s"></span>
+        <span class="star" style="--x:55%;--y:42%;--d:0.9s"></span>
+        <span class="star" style="--x:38%;--y:28%;--d:1.5s"></span>
+        <span class="star" style="--x:68%;--y:58%;--d:0.1s"></span>
+        <span class="star" style="--x:18%;--y:8%;--d:1.7s"></span>
+        <span class="star" style="--x:82%;--y:92%;--d:0.6s"></span>
+        <span class="star" style="--x:52%;--y:65%;--d:2s"></span>
+        <span class="star" style="--x:32%;--y:42%;--d:1.3s"></span>
+        <span class="star" style="--x:62%;--y:18%;--d:0.4s"></span>
+      </div>
+      <div class="hero-grid"></div>
+      <div class="hero-inner">
+        <div class="hero-content">
+          <span class="hero-badge">Community · Web3 · Open</span>
+          <h1 class="hero-title">The Future,<br>Shared.</h1>
+          <p class="hero-intro">Pizza Club is a global community dedicated to blockchain education and the open web. Learn, build, and connect with us.</p>
+          <a href="#chart" class="btn btn-primary">Explore</a>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-glow-wrap">
+            <div class="hero-glow hero-glow-outer"></div>
+            <div class="hero-glow hero-glow-mid"></div>
+            <div class="hero-glow hero-glow-inner"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="chart" class="chart-section">
+      <div class="section-header">
+        <span class="section-label">实时行情</span>
+        <h2>行情图表</h2>
+      </div>
+      <div class="tradingview-widget-wrapper">
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container" style="height:100%;width:100%">
+          <div class="tradingview-widget-container__widget" style="height:calc(100% - 32px);width:100%"></div>
+          <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Chart</span></a><span class="trademark"> by TradingView</span></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+          {
+            "allow_symbol_change": true,
+            "calendar": false,
+            "details": false,
+            "hide_side_toolbar": true,
+            "hide_top_toolbar": false,
+            "hide_legend": false,
+            "hide_volume": false,
+            "hotlist": false,
+            "interval": "D",
+            "locale": "zh",
+            "save_image": true,
+            "style": "1",
+            "symbol": "BINANCE:BTCUSDT",
+            "theme": "dark",
+            "timezone": "Asia/Shanghai",
+            "backgroundColor": "#1a1416",
+            "gridColor": "rgba(236, 72, 153, 0.06)",
+            "watchlist": [],
+            "withdateranges": false,
+            "compareSymbols": [],
+            "studies": [],
+            "autosize": true
+          }
+          </script>
+        </div>
+        <!-- TradingView Widget END -->
+      </div>
+    </section>
+
+    <section id="fear-greed" class="fear-greed-section">
+      <div class="section-header">
+        <span class="section-label">市场情绪</span>
+        <h2>恐惧与贪婪指数</h2>
+      </div>
+      <div class="fear-greed-container">
+        <div class="fear-greed-card">
+          <div class="fear-greed-value-wrap">
+            <span class="fear-greed-value" id="fear-greed-value">--</span>
+            <span class="fear-greed-unit">/ 100</span>
+          </div>
+          <p class="fear-greed-label" id="fear-greed-label">加载中…</p>
+          <div class="fear-greed-bar-wrap">
+            <div class="fear-greed-bar" id="fear-greed-bar"></div>
+          </div>
+          <p class="fear-greed-hint">数据来源：<a href="https://alternative.me/crypto/fear-and-greed-index/" target="_blank" rel="noopener noreferrer" class="fear-greed-link">Alternative.me</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="news" class="news-section">
+      <div class="section-header">
+        <span class="section-label">快讯</span>
+        <h2>加密货币新闻</h2>
+      </div>
+      <div class="news-modules">
+        <!-- 中文信息源 -->
+        <div class="news-module">
+          <h3 class="news-module-title">中文信息源</h3>
+          <div class="news-container">
+            <div class="news-ticker-wrap">
+              <div class="news-ticker">
+                <div class="news-ticker-inner" id="news-ticker-inner-zh">
+                  <a href="https://www.8btc.com/" target="_blank" rel="noopener noreferrer" class="news-card">
+                    <span class="news-source">巴比特</span>
+                    <h3 class="news-title">比特币与宏观市场：机构资金流入与监管动态</h3>
+                    <p class="news-summary">机构投资者持续流入加密市场，监管框架逐步明朗。</p>
+                    <span class="news-time">今日</span>
+                  </a>
+                  <a href="https://www.jinse.cn/" target="_blank" rel="noopener noreferrer" class="news-card">
+                    <span class="news-source">金色财经</span>
+                    <h3 class="news-title">以太坊升级与 Layer2 生态最新进展</h3>
+                    <p class="news-summary">以太坊升级路线图推进，Layer2 扩容方案持续扩展。</p>
+                    <span class="news-time">今日</span>
+                  </a>
+                  <a href="https://www.chainnode.com/" target="_blank" rel="noopener noreferrer" class="news-card">
+                    <span class="news-source">链节点</span>
+                    <h3 class="news-title">DeFi 与 NFT 市场周报：交易量与持仓变化</h3>
+                    <p class="news-summary">DeFi 锁仓量与 NFT 交易数据更新，细分赛道资金流向一览。</p>
+                    <span class="news-time">1 小时前</span>
+                  </a>
+                </div>
+                <div class="news-ticker-inner news-ticker-inner--copy" id="news-ticker-copy-zh" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 英文信息源 -->
+        <div class="news-module">
+          <h3 class="news-module-title">英文信息源</h3>
+          <div class="news-container">
+            <div class="news-ticker-wrap">
+              <div class="news-ticker">
+                <div class="news-ticker-inner" id="news-ticker-inner-en">
+                  <a href="https://www.coindesk.com/" target="_blank" rel="noopener noreferrer" class="news-card">
+                    <span class="news-source">CoinDesk</span>
+                    <h3 class="news-title">Bitcoin and macro: institutional flows and regulation</h3>
+                    <p class="news-summary">Institutional investors continue to flow into crypto markets as regulatory frameworks take shape.</p>
+                    <span class="news-time">Today</span>
+                  </a>
+                  <a href="https://cointelegraph.com/" target="_blank" rel="noopener noreferrer" class="news-card">
+                    <span class="news-source">Cointelegraph</span>
+                    <h3 class="news-title">Ethereum upgrades and Layer2 ecosystem updates</h3>
+                    <p class="news-summary">Ethereum roadmap advances as Layer2 scaling and ecosystem expand.</p>
+                    <span class="news-time">Today</span>
+                  </a>
+                  <a href="https://decrypt.co/" target="_blank" rel="noopener noreferrer" class="news-card">
+                    <span class="news-source">Decrypt</span>
+                    <h3 class="news-title">DeFi and NFT market weekly: volume and positions</h3>
+                    <p class="news-summary">DeFi TVL and NFT trading data update, flow across segments.</p>
+                    <span class="news-time">1h ago</span>
+                  </a>
+                </div>
+                <div class="news-ticker-inner news-ticker-inner--copy" id="news-ticker-copy-en" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="news-refresh-hint" id="news-refresh-hint">每 5 分钟自动更新 · 数据来源 RSS</p>
+    </section>
+
+    <section id="about" class="about">
+      <div class="section-header">
+        <span class="section-label">关于我们</span>
+        <h2>关于</h2>
+      </div>
+      <div class="card about-card">
+        <p>Pizza Club 是一个非营利性的 Web3 社区，目的是为了让更多人了解区块链以及相关知识。</p>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="section-header">
+        <span class="section-label">联系方式</span>
+        <h2>联系</h2>
+      </div>
+      <div class="card contact-card">
+        <p>Telegram：<a href="https://t.me/PPPIZA" target="_blank" rel="noopener noreferrer" class="contact-link">@PPPIZA</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 我的网页 · 保留所有权利</p>
+  </footer>
+
+  <script src="fear-greed.js"></script>
+  <script src="news.js"></script>
+</body>
+</html>

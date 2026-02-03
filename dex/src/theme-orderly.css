@@ -1,0 +1,70 @@
+/**
+ * Orderly SDK 黑粉主题覆盖
+ * 使用 Orderly 文档要求的 CSS 变量格式（无颜色空间函数）
+ * https://orderly.network/docs/sdks/react/theming
+ */
+
+:root {
+  /* 主色 - 粉 */
+  --oui-color-primary: 236 72 153;
+  --oui-color-primary-light: 244 114 182;
+  --oui-color-primary-darken: 219 39 119;
+
+  /* 背景 - 黑/深灰 */
+  --oui-color-base-100: 250 231 243;
+  --oui-color-base-200: 244 114 182;
+  --oui-color-base-300: 236 72 153;
+  --oui-color-base-400: 219 39 119;
+  --oui-color-base-500: 190 24 93;
+  --oui-color-base-600: 157 23 77;
+  --oui-color-base-700: 131 24 67;
+  --oui-color-base-800: 80 7 36;
+  --oui-color-base-900: 26 20 22;
+
+  --oui-color-background: 26 20 22;
+  --oui-color-background-contrast: 252 231 243;
+  --oui-color-fill: 26 20 22;
+  --oui-color-fill-light: 42 32 36;
+  --oui-color-popover: 42 32 36;
+  --oui-color-popover-foreground: 252 231 243;
+  --oui-color-base-foreground: 252 231 243;
+
+  /* 链接 */
+  --oui-color-link: 236 72 153;
+
+  /* 次要/边框 */
+  --oui-color-secondary: 252 231 243;
+  --oui-color-tertiary: 196 181 189;
+  --oui-color-quaternary: 196 181 189;
+  --oui-color-divider: 64 50 56;
+
+  /* 盈亏 */
+  --oui-color-trading-loss: 239 68 68;
+  --oui-color-trading-loss-contrast: 42 32 36;
+  --oui-color-trading-profit: 34 197 94;
+  --oui-color-trading-profit-contrast: 42 32 36;
+
+  /* 危险/成功/警告 */
+  --oui-color-danger: 239 68 68;
+  --oui-color-danger-light: 248 113 113;
+  --oui-color-danger-darken: 220 38 38;
+  --oui-color-success: 34 197 94;
+  --oui-color-success-light: 74 222 128;
+  --oui-color-success-darken: 22 163 74;
+  --oui-color-warning: 251 191 36;
+  --oui-color-warning-light: 253 224 71;
+  --oui-color-warning-darken: 245 158 11;
+
+  --oui-font-family: "Noto Sans SC", "Manrope", sans-serif;
+  --oui-font-size-base: 16px;
+  --oui-rounded: 8px;
+  --oui-rounded-sm: 4px;
+  --oui-rounded-lg: 12px;
+  --oui-rounded-full: 9999px;
+  --oui-button-shadow: none;
+}
+
+.perp-dex-app {
+  min-height: 100vh;
+  background: rgb(10 8 9);
+}
