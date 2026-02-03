@@ -8,7 +8,7 @@ const { execSync } = require('child_process');
 
 const root = __dirname;
 const releaseDir = path.join(root, 'release');
-const walletDistDir = path.join(root, 'wallet-widget', 'dist');
+const walletBuildDir = path.join(root, 'wallet-widget', 'build');
 const releaseWalletDir = path.join(releaseDir, 'wallet-widget', 'dist');
 
 const files = [
@@ -50,24 +50,26 @@ for (const f of files) {
   copyFile(src, dest);
 }
 
-// 构建并复制 RainbowKit 钱包组件（Vercel 上需先 postinstall 装好 wallet-widget 依赖）
-console.log('\n构建 wallet-widget（RainbowKit）…');
-try {
-  execSync('npm run build:wallet', { cwd: root, stdio: 'inherit', maxBuffer: 10 * 1024 * 1024 });
-} catch (e) {
-  console.warn('wallet-widget 构建失败:', e.message);
+// 复制 RainbowKit 钱包组件（使用已构建的 wallet-widget/build，提交到 Git 后 Vercel 无需再构建）
+if (!fs.existsSync(walletBuildDir)) {
+  console.log('\n构建 wallet-widget（RainbowKit）…');
+  try {
+    execSync('npm run build:wallet', { cwd: root, stdio: 'inherit', maxBuffer: 10 * 1024 * 1024 });
+  } catch (e) {
+    console.warn('wallet-widget 构建失败:', e.message);
+  }
 }
-if (fs.existsSync(walletDistDir)) {
+if (fs.existsSync(walletBuildDir)) {
   ensureDir(releaseWalletDir);
-  const walletFiles = fs.readdirSync(walletDistDir);
+  const walletFiles = fs.readdirSync(walletBuildDir);
   for (const f of walletFiles) {
-    const src = path.join(walletDistDir, f);
+    const src = path.join(walletBuildDir, f);
     const dest = path.join(releaseWalletDir, f);
     if (fs.statSync(src).isFile()) copyFile(src, dest);
   }
   console.log('  wallet-widget 已复制到 release/wallet-widget/dist/');
 } else {
-  console.warn('未找到 wallet-widget/dist/，部署后钱包按钮会 404。请确保 wallet-widget 已提交到 Git 且 npm run build:wallet 成功。');
+  console.warn('未找到 wallet-widget/build/，部署后钱包会 404。请本地执行 npm run build:wallet，然后 git add wallet-widget/build 并提交推送。');
 }
 
 console.log('\n完成。请将 release 文件夹内的全部内容上传到服务器。');
