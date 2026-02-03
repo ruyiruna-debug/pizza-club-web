@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build:wallet": "cd wallet-widget && npm install && npm run build",
+    "postinstall": "npm install --prefix wallet-widget",
+    "build:wallet": "npm run build --prefix wallet-widget",
     "pack": "node pack.cjs",
     "deploy": "node deploy.cjs"
   },
