@@ -2,8 +2,5 @@
   "buildCommand": "npm run pack",
   "outputDirectory": "release",
   "framework": null,
-  "installCommand": "npm install",
-  "rewrites": [
-    { "source": "/dex", "destination": "/dex/" }
-  ]
+  "installCommand": "npm install"
 }

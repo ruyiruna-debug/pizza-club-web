@@ -43,19 +43,6 @@
     if (btn) btn.disabled = false;
   }
 
-  function syncStrategyToOrderlyIframe(data) {
-    var iframe = document.getElementById('orderly-trading-iframe');
-    if (!iframe || !data) return;
-    var base = (iframe.getAttribute('data-dex-base') || '/dex/').replace(/\?.*$/, '').replace(/\/?$/, '') + '/';
-    var params = new URLSearchParams({
-      side: data.directionKey || '',
-      entry: String(data.entry),
-      sl: String(data.stopLoss),
-      tp: String(data.takeProfit)
-    });
-    iframe.src = base + '?' + params.toString();
-  }
-
   function showResult(data) {
     var loading = document.getElementById('ai-strategy-loading');
     var err = document.getElementById('ai-strategy-error');
@@ -84,7 +71,6 @@
       if (reasonEl) reasonEl.textContent = data.reason || '';
     }
     if (btn) btn.disabled = false;
-    syncStrategyToOrderlyIframe(data);
   }
 
   function getReason(isLong, change24h, lang) {
@@ -160,15 +146,7 @@
     });
   }
 
-  function initOrderlyIframe() {
-    var iframe = document.getElementById('orderly-trading-iframe');
-    if (!iframe || iframe.src) return;
-    var base = (iframe.getAttribute('data-dex-base') || '/dex/').replace(/\?.*$/, '').replace(/\/?$/, '') + '/';
-    iframe.src = base;
-  }
-
   function init() {
-    initOrderlyIframe();
     var btn = document.getElementById('ai-strategy-btn');
     if (btn) {
       btn.addEventListener('click', fetchStrategy);

@@ -11,11 +11,12 @@
     }
   }
 
+  /** 获取注入的 Web3 钱包（兼容 MetaMask、Rabby、Coinbase Wallet、Trust Wallet 等绝大多数浏览器插件钱包） */
   function getProvider() {
     var ethereum = typeof window !== 'undefined' && window.ethereum;
     if (!ethereum) return null;
-    if (ethereum.providers && ethereum.providers.length > 0) {
-      return ethereum.providers[0];
+    if (Array.isArray(ethereum.providers)) {
+      return ethereum.providers.find(function (p) { return p.isMetaMask || p.isRabby || p.isCoinbaseWallet; }) || ethereum.providers[0];
     }
     return ethereum;
   }
